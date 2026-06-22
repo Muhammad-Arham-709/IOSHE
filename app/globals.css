@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Core IOSHE Design Tokens */
+  --color-emerald-forest: #21473E;
+  --color-emerald-light: #2F6F5F;
+  --color-organic-sand: #F4F1EA;
+  --color-dark-charcoal: #24312D;
+
+  /* Custom UI Components */
+  --animate-fade-up: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  @keyframes fade-up {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Base Level Overrides */
+html {
+  scroll-behavior: smooth;
+}
+
+h1 {
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  letter-spacing: -0.01em;
+  position: relative;
+  display: inline-block;
+}
+
+section:not(.no-underline) h2:after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #2F6F5F, #2F6F5F, transparent);
+  border-radius: 3px;
+
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito', sans-serif;
+  background-color: #F4F1EA;
+  color: #24312D;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Custom UI Utility Extensions */
+.glass {
+  backdrop-filter: blur(18px);
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #2F6F5F;
+  transition: width 0.35s ease;
+  border-radius: 999px;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+button, a {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.1);
+}
+/* Prevent layout shift from images */
+img {
+  content-visibility: auto;
+  contain: paint;
+}
+
+/* Reserve space for all images before they load */
+.aspect-ratio-fixed {
+  aspect-ratio: var(--aspect-ratio, 1/1);
+}
